@@ -35,7 +35,7 @@ class ScanedProduct extends Component {
 
   	componentDidMount() {
       const userAgent = navigator.userAgent.toLowerCase();
-      const IsFBMSN = includes(userAgent,'FBAN/FBIOS');
+      const IsFBMSN = userAgent.indexOf('fb_iab');
       if(IsFBMSN){
 
       $('.HiaYvf-LgbsSe .kcZgp-LgbsSe .n2to0e .P0Lgcb .Wetbn .skIXFc-ktSouf-wcotoc-WGXQb .MEDVr-LgbsSe-bN97Pc .Wetbn-LgbsSe-bN97Pc .KVuj8d-tSZMSb .MEDVr-LgbsSe-bN97Pc .LgbsSe-bN97Pc ').click(function(){
@@ -167,7 +167,7 @@ class ScanedProduct extends Component {
   	let isiPhone = includes(uagent, appConstants.iphone);
   	let downloadPass = (isiPhone && !isEmpty(activePass)) ? true : false;
     const userAgent = navigator.userAgent.toLowerCase();
-      const IsFBMSN = includes(userAgent,'FB'); // 'FBAN/FBAS'
+      const IsFBMSN = userAgent.indexOf('fb_iab'); // 'FBAN/FBAS'
     const notFromFBMSNWrap = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
         { downloadPass ? <iframe width="1" height="1" src={activePass} title="test"></iframe> : '' }
         <div className={`headingTxtBeacon ${!displayText ? 'bgWhite' : ''}`}>
