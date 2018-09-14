@@ -25,16 +25,28 @@ class ScanedProduct extends Component {
       // this.androidPay = React.createRef();
   	}
 
+    componentWillMount(){
+      console.log(navigator.userAgent)
+      const userAgent = navigator.userAgent.toLowerCase();
+      const IsFBMSN = includes(userAgent,'FBAN/FBIOS');
+      // alert("please don't use FB browser")
+
+    }
+
   	componentDidMount() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const IsFBMSN = includes(userAgent,'FBAN/FBIOS');
+      if(IsFBMSN){
+
       $('.HiaYvf-LgbsSe .kcZgp-LgbsSe .n2to0e .P0Lgcb .Wetbn .skIXFc-ktSouf-wcotoc-WGXQb .MEDVr-LgbsSe-bN97Pc .Wetbn-LgbsSe-bN97Pc .KVuj8d-tSZMSb .MEDVr-LgbsSe-bN97Pc .LgbsSe-bN97Pc ').click(function(){
-                  console.log("button clicked")
-                })
-                $('.kcZgp-LgbsSe').click(function(){
-                  console.log("button clicked")
-                })
-                $("#___savetoandroidpay_0").click(function(){
-                  console.log("button clock")
-                })
+        console.log("button clicked")
+      })
+      $('.kcZgp-LgbsSe').click(function(){
+        console.log("button clicked")
+      })
+      $("#___savetoandroidpay_0").click(function(){
+        console.log("button clock")
+      })
       let currentParams = this.props.match.params;
   		let sessionId = (!isUndefined(currentParams.sessionId) && !isEmpty(currentParams.sessionId)) ? currentParams.sessionId : '';
       console.log(appConstants);
@@ -43,8 +55,12 @@ class ScanedProduct extends Component {
         navigator.geolocation.getCurrentPosition((position) => {
 	        //currentParams = { latitude: "17.425646", longitude: "78.4201999", sessionId:sessionId };
 	        currentParams = { latitude: position.coords.latitude, longitude: position.coords.longitude, sessionId:sessionId };  
+          console.log('currentParams11')
+          console.log(currentParams)
 	        const that = this;
 	        ApiClient.apiPost(ApiEndPoints.DevicesBySessionId, currentParams).then(function(res) {
+            console.log("device session")
+            console.log(res)
 			  		if(res.data.data.length > 0) {
               const productsList = res.data.data.length > 0 ? res.data.data.filter((item) => {
                   if(item.Id !== null){
@@ -61,7 +77,7 @@ class ScanedProduct extends Component {
                 that.createPass(currentParams, res.data.data);
               // }
 			     	} else {
-			      	alert(userLanguage.en.saveSessionErr);
+			      	alert("111"+userLanguage.en.saveSessionErr);
 			      }	
 			  	});
 		  	}, (error) => {
@@ -69,6 +85,7 @@ class ScanedProduct extends Component {
 	      });
 	    }else{
         alert(userLanguage.en.useAnotherBrowser);
+      }
       }
   	};
     setWishlistCookies = (data) => {
@@ -149,27 +166,31 @@ class ScanedProduct extends Component {
   	const uagent = navigator.userAgent.toLowerCase();
   	let isiPhone = includes(uagent, appConstants.iphone);
   	let downloadPass = (isiPhone && !isEmpty(activePass)) ? true : false;
-    return (
-			<div className="headingSection" >
-      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-				{ downloadPass ? <iframe width="1" height="1" src={activePass} title="test"></iframe> : '' }
-				<div className={`headingTxtBeacon ${!displayText ? 'bgWhite' : ''}`}>
-					{ displayText ?
-						<div className="padtop-80">
-							<div className="bgWhite">
-								<h1>{userLanguage.en.oneStepAway}</h1>
-								<div className="deviceTxt">{userLanguage.en.saveForInStoreExp}</div>
-							</div>
-							<div className="grayBg">
-								<Handoff wishlistData={displayText} appConstants={appConstants} storeId={storeId} isIos={isiPhone} walletClickHandler={this.assignWalletPass}/>
-							</div>
-						</div> : ''
-					}
+    const userAgent = navigator.userAgent.toLowerCase();
+      const IsFBMSN = includes(userAgent,'FB'); // 'FBAN/FBAS'
+    const notFromFBMSNWrap = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+        { downloadPass ? <iframe width="1" height="1" src={activePass} title="test"></iframe> : '' }
+        <div className={`headingTxtBeacon ${!displayText ? 'bgWhite' : ''}`}>
+          { displayText ?
+            <div className="padtop-80">
+              <div className="bgWhite">
+                <h1>{userLanguage.en.oneStepAway}</h1>
+                <div className="deviceTxt">{userLanguage.en.saveForInStoreExp}</div>
+              </div>
+              <div className="grayBg">
+                <Handoff wishlistData={displayText} appConstants={appConstants} storeId={storeId} isIos={isiPhone} walletClickHandler={this.assignWalletPass}/>
+              </div>
+            </div> : ''
+          }
           <div id='loyalty'></div>
           <div>
           </div>
-				</div>
-        </Animated>
+        </div>
+      </Animated>;
+      const fromFBMSNWrap = <div className={`headingTxtBeacon `}><div className="padtop-80" style={{marginTop:'100px'}}><div className="bgWhite">U r from fb</div></div></div>
+    return (
+			<div className="headingSection" >
+      {IsFBMSN ? fromFBMSNWrap : notFromFBMSNWrap }
 			</div>
     );
   }
