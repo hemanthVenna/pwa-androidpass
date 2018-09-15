@@ -25,14 +25,6 @@ class ScanedProduct extends Component {
       // this.androidPay = React.createRef();
   	}
 
-    componentWillMount(){
-      console.log(navigator.userAgent)
-      const userAgent = navigator.userAgent.toLowerCase();
-      const IsFBMSN = includes(userAgent,'FBAN/FBIOS');
-      // alert("please don't use FB browser")
-
-    }
-
   	componentDidMount() {
       const userAgent = navigator.userAgent.toLowerCase();
       const IsFBMSN = userAgent.indexOf('fb_iab');
@@ -190,7 +182,7 @@ class ScanedProduct extends Component {
       const fromFBMSNWrap = <div className={`headingTxtBeacon `}><div className="padtop-80" style={{marginTop:'100px'}}><div className="bgWhite">U r from fb</div></div></div>
     return (
 			<div className="headingSection" >
-      {IsFBMSN ? fromFBMSNWrap : notFromFBMSNWrap }
+      {IsFBMSN > 0 ? fromFBMSNWrap : notFromFBMSNWrap }
 			</div>
     );
   }
