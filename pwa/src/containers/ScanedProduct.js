@@ -27,7 +27,7 @@ class ScanedProduct extends Component {
 
   	componentDidMount() {
       const userAgent = navigator.userAgent.toLowerCase();
-      const IsFBMSN = ((uagent.indexOf('fb_iab') > -1) || (uagent.indexOf('fban/') > -1));
+      const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1));
       if(IsFBMSN){
 
       $('.HiaYvf-LgbsSe .kcZgp-LgbsSe .n2to0e .P0Lgcb .Wetbn .skIXFc-ktSouf-wcotoc-WGXQb .MEDVr-LgbsSe-bN97Pc .Wetbn-LgbsSe-bN97Pc .KVuj8d-tSZMSb .MEDVr-LgbsSe-bN97Pc .LgbsSe-bN97Pc ').click(function(){
