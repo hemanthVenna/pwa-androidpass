@@ -27,8 +27,8 @@ class ScanedProduct extends Component {
 
   	componentDidMount() {
       const userAgent = navigator.userAgent.toLowerCase();
-      const IsFBMSN = userAgent.indexOf('fb');
-      if(IsFBMSN < 0){
+      const IsFBMSN = ((uagent.indexOf('fb_iab') > -1) || (uagent.indexOf('fban/') > -1));
+      if(IsFBMSN){
 
       $('.HiaYvf-LgbsSe .kcZgp-LgbsSe .n2to0e .P0Lgcb .Wetbn .skIXFc-ktSouf-wcotoc-WGXQb .MEDVr-LgbsSe-bN97Pc .Wetbn-LgbsSe-bN97Pc .KVuj8d-tSZMSb .MEDVr-LgbsSe-bN97Pc .LgbsSe-bN97Pc ').click(function(){
         console.log("button clicked")
@@ -167,7 +167,7 @@ class ScanedProduct extends Component {
     // if(isAndroid){
     //   const IsFBMSN = userAgent.indexOf('fb_iab'); 
     // }
-    const IsFBMSN = userAgent.indexOf('fb');
+    const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1));
     const notFromFBMSNWrap = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
         { downloadPass ? <iframe width="1" height="1" src={activePass} title="test"></iframe> : '' }
         <div className={`headingTxtBeacon ${!displayText ? 'bgWhite' : ''}`}>
@@ -192,7 +192,7 @@ class ScanedProduct extends Component {
           <div className="headingSection padtop-80">
             <div className="widgetAlert">
               <h4>{userLanguage.en.unableToSave}</h4>
-              <div><img src="images/ic-busy.png" alt="welcomeImage"/></div>
+              <div><img src="/images/ic-busy.png" alt="welcomeImage"/></div>
               <div className='unableSubHead'><p>{userLanguage.en.weHaveSol}</p></div>
               <div className='unableContent' >
                 <p>{userLanguage.en.unableContent1}</p>
@@ -209,7 +209,7 @@ class ScanedProduct extends Component {
         </Animated>;
     return (
 			<div className="headingSection" >
-      {IsFBMSN > 0 ? fromFBMSNWrap : notFromFBMSNWrap }
+      {IsFBMSN  ? fromFBMSNWrap : notFromFBMSNWrap }
 			</div>
     );
   }
