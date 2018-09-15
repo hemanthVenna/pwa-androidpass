@@ -1757,3 +1757,19 @@ video {
 .ioswallet:focus {
   outline: none;
 }
+
+.unableContent{
+  margin : 20px 0;
+}
+.unableSubHead{
+  font-size: 16px;
+  margin:18px 0;
+  color:#707B7C;
+}
+.cancelBtn {
+  width: 220px;
+  border:none;
+  outline:none;
+  color :#0070c6;
+  font-weight: bold;
+}

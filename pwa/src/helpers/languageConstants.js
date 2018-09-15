@@ -112,7 +112,13 @@ const userLanguage = {
     'postsHeader' : 'Posts is there',
     'oneStepAway' : "You're one step away!",
     'saveForInStoreExp' : 'Save this to your device for your new in-store experience.',
-    'whatDidThink' : 'What did you think of '
+    'whatDidThink' : 'What did you think of ',
+    'unableToSave' : 'Unable to save',
+    'unableContent1' : 'Tap the lower right icon and choose to',
+    'unableContent2' : 'open in browser to save your',
+    'unableContent3' : 'selection on your phone',
+    'gotIt' : 'GOT IT',
+    'weHaveSol' : 'We have an solution'
 	}
 };
 export default userLanguage;

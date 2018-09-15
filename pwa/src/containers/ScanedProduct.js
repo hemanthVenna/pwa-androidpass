@@ -27,8 +27,8 @@ class ScanedProduct extends Component {
 
   	componentDidMount() {
       const userAgent = navigator.userAgent.toLowerCase();
-      const IsFBMSN = userAgent.indexOf('fb_iab');
-      if(IsFBMSN){
+      const IsFBMSN = userAgent.indexOf('fb');
+      if(IsFBMSN < 0){
 
       $('.HiaYvf-LgbsSe .kcZgp-LgbsSe .n2to0e .P0Lgcb .Wetbn .skIXFc-ktSouf-wcotoc-WGXQb .MEDVr-LgbsSe-bN97Pc .Wetbn-LgbsSe-bN97Pc .KVuj8d-tSZMSb .MEDVr-LgbsSe-bN97Pc .LgbsSe-bN97Pc ').click(function(){
         console.log("button clicked")
@@ -102,6 +102,7 @@ class ScanedProduct extends Component {
     				}
   		  	});
         }
+        console.log(uagent)
         let isAndroid = includes(uagent,appConstants.android);
         console.log("input param")
         console.log(inputParam)
@@ -159,7 +160,14 @@ class ScanedProduct extends Component {
   	let isiPhone = includes(uagent, appConstants.iphone);
   	let downloadPass = (isiPhone && !isEmpty(activePass)) ? true : false;
     const userAgent = navigator.userAgent.toLowerCase();
-      const IsFBMSN = userAgent.indexOf('fb_iab'); // 'FBAN/FBAS'
+    // if(isiPhone){
+    //   const IsFBMSN = userAgent.indexOf('fban');
+    // }
+    // let isAndroid = includes(uagent,appConstants.android);
+    // if(isAndroid){
+    //   const IsFBMSN = userAgent.indexOf('fb_iab'); 
+    // }
+    const IsFBMSN = userAgent.indexOf('fb');
     const notFromFBMSNWrap = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
         { downloadPass ? <iframe width="1" height="1" src={activePass} title="test"></iframe> : '' }
         <div className={`headingTxtBeacon ${!displayText ? 'bgWhite' : ''}`}>
@@ -179,7 +187,26 @@ class ScanedProduct extends Component {
           </div>
         </div>
       </Animated>;
-      const fromFBMSNWrap = <div className={`headingTxtBeacon `}><div className="padtop-80" style={{marginTop:'100px'}}><div className="bgWhite">U r from fb</div></div></div>
+      const fromFBMSNWrap = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+        <div className={`headingTxtBeacon `}>
+          <div className="headingSection padtop-80">
+            <div className="widgetAlert">
+              <h4>{userLanguage.en.unableToSave}</h4>
+              <div><img src="images/ic-busy.png" alt="welcomeImage"/></div>
+              <div className='unableSubHead'><p>{userLanguage.en.weHaveSol}</p></div>
+              <div className='unableContent' >
+                <p>{userLanguage.en.unableContent1}</p>
+                <p>{userLanguage.en.unableContent2}</p>
+                <p>{userLanguage.en.unableContent3}</p>
+              </div>
+              <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.gotIt}</button>
+              </div>
+              <div> <button className="btn-cancel cancelBtn">{userLanguage.en.cancel}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </Animated>;
     return (
 			<div className="headingSection" >
       {IsFBMSN > 0 ? fromFBMSNWrap : notFromFBMSNWrap }
