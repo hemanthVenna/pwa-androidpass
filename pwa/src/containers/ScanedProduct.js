@@ -69,7 +69,7 @@ class ScanedProduct extends Component {
                 that.createPass(currentParams, res.data.data);
               // }
 			     	} else {
-			      	alert("111"+userLanguage.en.saveSessionErr);
+			      	alert(userLanguage.en.saveSessionErr);
 			      }	
 			  	});
 		  	}, (error) => {
@@ -209,7 +209,7 @@ class ScanedProduct extends Component {
         </Animated>;
     return (
 			<div className="headingSection" >
-      {IsFBMSN  ? fromFBMSNWrap : notFromFBMSNWrap }
+      {IsFBMSN ? fromFBMSNWrap : notFromFBMSNWrap }
 			</div>
     );
   }
