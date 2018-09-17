@@ -126,9 +126,8 @@ const userLanguage = {
     'passNotCreated' : 'pass not created',
     'useAnotherBrowser' : 'Please open this link in another browser.',
     'unableToSave' : 'Unable to save',
-    'unableContent1' : 'Tap the lower right icon and choose to',
-    'unableContent2' : 'open in browser to save your',
-    'unableContent3' : 'selection on your phone',
+    'unableContentIos' : 'Tap the lower right icon and choose to open in browser to save your selection on your phone',
+    'unableContentAndroid' : 'Tap the top right icon and choose to open in chrome to save your selection on your phone',
     'gotIt' : 'GOT IT',
     'weHaveSol' : 'We have an solution'
 	}
