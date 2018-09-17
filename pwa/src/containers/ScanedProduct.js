@@ -20,7 +20,8 @@ class ScanedProduct extends Component {
   			storeId: '',
   			loaded: false,
   			activePass: '',
-        jwtString: ''
+        jwtString: '',
+        locationAccessAllowed : true
   		};
       // this.androidPay = React.createRef();
   	}
@@ -28,7 +29,7 @@ class ScanedProduct extends Component {
   	componentDidMount() {
       const userAgent = navigator.userAgent.toLowerCase();
       const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1));
-      if(IsFBMSN){
+      if(!IsFBMSN){
 
       $('.HiaYvf-LgbsSe .kcZgp-LgbsSe .n2to0e .P0Lgcb .Wetbn .skIXFc-ktSouf-wcotoc-WGXQb .MEDVr-LgbsSe-bN97Pc .Wetbn-LgbsSe-bN97Pc .KVuj8d-tSZMSb .MEDVr-LgbsSe-bN97Pc .LgbsSe-bN97Pc ').click(function(){
         console.log("button clicked")
@@ -46,6 +47,7 @@ class ScanedProduct extends Component {
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
 	        //currentParams = { latitude: "17.425646", longitude: "78.4201999", sessionId:sessionId };
+          this.setState({locationAccessAllowed:true})
 	        currentParams = { latitude: position.coords.latitude, longitude: position.coords.longitude, sessionId:sessionId };  
           console.log('currentParams11')
           console.log(currentParams)
@@ -69,11 +71,11 @@ class ScanedProduct extends Component {
                 that.createPass(currentParams, res.data.data);
               // }
 			     	} else {
-			      	alert(userLanguage.en.saveSessionErr);
+			      	alert("111"+userLanguage.en.saveSessionErr);
 			      }	
 			  	});
 		  	}, (error) => {
-		  		alert(userLanguage.en.browserSettingErr);
+		  		this.setState({locationAccessAllowed:false})
 	      });
 	    }else{
         alert(userLanguage.en.useAnotherBrowser);
@@ -160,6 +162,7 @@ class ScanedProduct extends Component {
   	let isiPhone = includes(uagent, appConstants.iphone);
   	let downloadPass = (isiPhone && !isEmpty(activePass)) ? true : false;
     const userAgent = navigator.userAgent.toLowerCase();
+    const msg = isiPhone ? userLanguage.en.unableContentIos : userLanguage.en.unableContentAndroid ;
     // if(isiPhone){
     //   const IsFBMSN = userAgent.indexOf('fban');
     // }
@@ -195,9 +198,26 @@ class ScanedProduct extends Component {
               <div><img src="/images/ic-busy.png" alt="welcomeImage"/></div>
               <div className='unableSubHead'><p>{userLanguage.en.weHaveSol}</p></div>
               <div className='unableContent' >
-                <p>{userLanguage.en.unableContent1}</p>
-                <p>{userLanguage.en.unableContent2}</p>
-                <p>{userLanguage.en.unableContent3}</p>
+                <p>{msg}</p>
+              </div>
+              <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.gotIt}</button>
+              </div>
+              <div> <button className="btn-cancel cancelBtn">{userLanguage.en.cancel}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </Animated>;
+
+        const locationAlert = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+        <div className={`headingTxtBeacon `}>
+          <div className="headingSection padtop-80">
+            <div className="widgetAlert">
+              <h4>Location alert</h4>
+              <div><img src="/images/ic-busy.png" alt="welcomeImage"/></div>
+              <div className='unableSubHead'><p>{userLanguage.en.weHaveSol}</p></div>
+              <div className='unableContent' >
+                <p>Please allow the site to access location</p>
               </div>
               <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.gotIt}</button>
               </div>
@@ -209,7 +229,8 @@ class ScanedProduct extends Component {
         </Animated>;
     return (
 			<div className="headingSection" >
-      {IsFBMSN ? fromFBMSNWrap : notFromFBMSNWrap }
+      {(IsFBMSN && this.state.locationAccessAllowed) ? fromFBMSNWrap : notFromFBMSNWrap }
+        {!this.state.locationAccessAllowed && locationAlert}
 			</div>
     );
   }
