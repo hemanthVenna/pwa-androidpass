@@ -213,13 +213,13 @@ class ScanedProduct extends Component {
         <div className={`headingTxtBeacon `}>
           <div className="headingSection padtop-80">
             <div className="widgetAlert">
-              <h4>Location alert</h4>
-              <div><img src="/images/ic-busy.png" alt="welcomeImage"/></div>
-              <div className='unableSubHead'><p>{userLanguage.en.weHaveSol}</p></div>
+              <h4>{userLanguage.en.locationAlertHeader}</h4>
+              <div><img src="/images/ic-store.png" alt="welcomeImage"/></div>
+              <div className='unableSubHead'><p>{userLanguage.en.enableLocation}</p></div>
               <div className='unableContent' >
-                <p>Please allow the site to access location</p>
+                <p>{userLanguage.en.locationAlertContent}</p>
               </div>
-              <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.gotIt}</button>
+              <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.tryAgain}</button>
               </div>
               <div> <button className="btn-cancel cancelBtn">{userLanguage.en.cancel}</button>
               </div>

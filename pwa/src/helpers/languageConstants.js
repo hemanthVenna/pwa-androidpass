@@ -129,7 +129,10 @@ const userLanguage = {
     'unableContentIos' : 'Tap the lower right icon and choose to open in browser to save your selection on your phone',
     'unableContentAndroid' : 'Tap the top right icon and choose to open in chrome to save your selection on your phone',
     'gotIt' : 'GOT IT',
-    'weHaveSol' : 'We have an solution'
+    'weHaveSol' : 'We have an solution',
+    'locationAlertHeader' : 'Could not find you!',
+    'enableLocation' : 'Enable your location',
+    'locationAlertContent' : 'We need your location for us to enable a pass that can be saved to your phone, making your device experience easier.'
 	}
 };
 export default userLanguage;
