@@ -154,6 +154,11 @@ class ScanedProduct extends Component {
       console.log("loyalti save clicked")
     }
 
+    handleTryAgain() {
+      console.log("button try again");
+      window.location.reload()
+    }
+
   render() {
   	const { wishList, activePass } = this.state;
   	const storeId = this.state.storeId ? this.state.storeId : '';
@@ -170,6 +175,7 @@ class ScanedProduct extends Component {
     // if(isAndroid){
     //   const IsFBMSN = userAgent.indexOf('fb_iab'); 
     // }
+    
     const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1));
     const notFromFBMSNWrap = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
         { downloadPass ? <iframe width="1" height="1" src={activePass} title="test"></iframe> : '' }
@@ -200,10 +206,6 @@ class ScanedProduct extends Component {
               <div className='unableContent' >
                 <p>{msg}</p>
               </div>
-              <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.gotIt}</button>
-              </div>
-              <div> <button className="btn-cancel cancelBtn">{userLanguage.en.cancel}</button>
-              </div>
             </div>
           </div>
         </div>
@@ -219,10 +221,9 @@ class ScanedProduct extends Component {
               <div className='unableContent' >
                 <p>{userLanguage.en.locationAlertContent}</p>
               </div>
-              <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.tryAgain}</button>
+              <div className="btnContainer"> <button className="btn btn-primary" onClick={(e) => this.handleTryAgain(e)}>{userLanguage.en.tryAgain}</button>
               </div>
-              <div> <button className="btn-cancel cancelBtn">{userLanguage.en.cancel}</button>
-              </div>
+              
             </div>
           </div>
         </div>
