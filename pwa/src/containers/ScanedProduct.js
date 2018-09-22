@@ -28,7 +28,7 @@ class ScanedProduct extends Component {
 
   	componentDidMount() {
       const userAgent = navigator.userAgent.toLowerCase();
-      const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1));
+      const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1) || (userAgent.indexOf('micromessenger') > -1));
       if(!IsFBMSN){
 
       $('.HiaYvf-LgbsSe .kcZgp-LgbsSe .n2to0e .P0Lgcb .Wetbn .skIXFc-ktSouf-wcotoc-WGXQb .MEDVr-LgbsSe-bN97Pc .Wetbn-LgbsSe-bN97Pc .KVuj8d-tSZMSb .MEDVr-LgbsSe-bN97Pc .LgbsSe-bN97Pc ').click(function(){
@@ -176,7 +176,7 @@ class ScanedProduct extends Component {
     //   const IsFBMSN = userAgent.indexOf('fb_iab'); 
     // }
     
-    const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1));
+    const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1) || (userAgent.indexOf('micromessenger') > -1));
     const notFromFBMSNWrap = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
         { downloadPass ? <iframe width="1" height="1" src={activePass} title="test"></iframe> : '' }
         <div className={`headingTxtBeacon ${!displayText ? 'bgWhite' : ''}`}>
