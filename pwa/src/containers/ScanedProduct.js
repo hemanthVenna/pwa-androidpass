@@ -167,14 +167,13 @@ class ScanedProduct extends Component {
   	let isiPhone = includes(uagent, appConstants.iphone);
   	let downloadPass = (isiPhone && !isEmpty(activePass)) ? true : false;
     const userAgent = navigator.userAgent.toLowerCase();
-    const msg = isiPhone ? userLanguage.en.unableContentIos : userLanguage.en.unableContentAndroid ;
-    // if(isiPhone){
-    //   const IsFBMSN = userAgent.indexOf('fban');
-    // }
-    // let isAndroid = includes(uagent,appConstants.android);
-    // if(isAndroid){
-    //   const IsFBMSN = userAgent.indexOf('fb_iab'); 
-    // }
+    
+    if(userAgent.indexOf('fb_iab') > -1){
+      const msg = userLanguage.en.unableContentAndroid;
+    }
+    if((userAgent.indexOf('fban/') > -1) || (userAgent.indexOf('micromessenger') > -1)){
+      const msg = userLanguage.en.unableContentAndroid
+    }
     
     const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1) || (userAgent.indexOf('micromessenger') > -1));
     const notFromFBMSNWrap = <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
