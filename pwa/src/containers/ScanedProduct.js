@@ -167,12 +167,14 @@ class ScanedProduct extends Component {
   	let isiPhone = includes(uagent, appConstants.iphone);
   	let downloadPass = (isiPhone && !isEmpty(activePass)) ? true : false;
     const userAgent = navigator.userAgent.toLowerCase();
-    
+    let msg = userLanguage.en.unableContentAndroid;
     if(userAgent.indexOf('fban/') > -1){
-      const msg = userLanguage.en.unableContentAndroid;
+      msg = userLanguage.en.unableContentIos;
+      alert('111111111');
     }
     if((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('micromessenger') > -1)){
-      const msg = userLanguage.en.unableContentAndroid
+      alert('22222');
+      msg = userLanguage.en.unableContentAndroid;
     }
     
     const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1) || (userAgent.indexOf('micromessenger') > -1));
