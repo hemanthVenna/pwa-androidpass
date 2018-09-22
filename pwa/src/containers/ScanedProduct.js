@@ -170,10 +170,8 @@ class ScanedProduct extends Component {
     let msg = userLanguage.en.unableContentAndroid;
     if(userAgent.indexOf('fban/') > -1){
       msg = userLanguage.en.unableContentIos;
-      alert('111111111');
     }
     if((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('micromessenger') > -1)){
-      alert('22222');
       msg = userLanguage.en.unableContentAndroid;
     }
     
