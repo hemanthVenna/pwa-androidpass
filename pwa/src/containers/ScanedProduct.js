@@ -168,10 +168,10 @@ class ScanedProduct extends Component {
   	let downloadPass = (isiPhone && !isEmpty(activePass)) ? true : false;
     const userAgent = navigator.userAgent.toLowerCase();
     
-    if(userAgent.indexOf('fb_iab') > -1){
+    if(userAgent.indexOf('fban/') > -1){
       const msg = userLanguage.en.unableContentAndroid;
     }
-    if((userAgent.indexOf('fban/') > -1) || (userAgent.indexOf('micromessenger') > -1)){
+    if((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('micromessenger') > -1)){
       const msg = userLanguage.en.unableContentAndroid
     }
     
