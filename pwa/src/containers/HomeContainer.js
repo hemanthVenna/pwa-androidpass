@@ -6,6 +6,7 @@ import {Animated} from 'react-animated-css';
 import userLanguage from '../helpers/languageConstants.js';
 import appConstants from "../helpers/appConstants";
 import ApiClient  from '../helpers/ApiClient';
+import ApiEndPoints  from '../helpers/ApiEndPoints';
 class HomeContainer extends Component {
   constructor(props){
     super(props);
@@ -21,8 +22,28 @@ class HomeContainer extends Component {
       alert('cookie empty');
     }
     if(!isUndefined(localStorage.getItem(appConstants.sessionCookie)) && !isEmpty(localStorage.getItem(appConstants.sessionCookie))){
-      let sessionId1 = localStorage.getItem(appConstants.sessionCookie);
-      alert('localsessionId-->'+sessionId1);
+      let currentParams = [];
+      let sessionId = localStorage.getItem(appConstants.sessionCookie)
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          currentParams = { latitude: '17.425646', longitude: '78.41799', sessionId:sessionId };   
+          const that = this;
+          ApiClient.apiPost(ApiEndPoints.DevicesBySessionId, currentParams).then(function(res) {
+            if(res.data.data.length > 0) {
+              const showAtStore = (res.data.nearestStoreId === null) ? true : false;
+              if(!showAtStore){
+                alert('in store');
+              }else{
+                alert('not in store');
+              }
+            } else {
+              alert(userLanguage[that.state.language].saveSessionErr);
+            } 
+          });
+        }, (error) => {
+          alert('please switch on ur location.');
+        });
+      }
     }else{
       alert('localstorage empty');
     } 
