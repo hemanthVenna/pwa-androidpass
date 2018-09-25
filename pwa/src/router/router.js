@@ -15,6 +15,7 @@ class ReactRouter extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={App} />
+          <Route path="/becon-scan" component={BeaconWithProduct} />
           <Route path="/beacon-scan/:sessionId/:flag" component={Beacon} />
           <Route path="/product-scan/:sessionId/:flag" component={ScanedProduct} />
           <Route path="/device-list/:storeId/:sku" component={BeaconWithProduct} />

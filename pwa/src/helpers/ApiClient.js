@@ -77,6 +77,9 @@ const ApiClient = {
     }
     return "";
   },
+  doReload() {
+    window.location.reload()
+  }
 };
 
 export default ApiClient;

@@ -10,5 +10,8 @@ const apiEndPoints = {
   SendRawNotification: `${newApiHostUrl}SendRawNotification`,
   CreateiosPass: `${walletApiHostUrl}IOSPass`,
   CreateandroidPass: `${walletApiHostUrl}AndroidPass`,
+  DevicesByStoreId: `${newApiHostUrl}AvailableDevicesByStoreId`,
+  GetDeviceStatus: `${newApiHostUrl}GetDeviceStatus`,
+  DeviceAvailability: `${newApiHostUrl}DeviceAvailability`,
 };
 export default apiEndPoints;

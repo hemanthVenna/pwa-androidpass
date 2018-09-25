@@ -5,7 +5,7 @@ import userLanguage from '../helpers/languageConstants.js';
 class ModalForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {lat: '', lng: '', show: true};
+    this.state = {lat: '', lng: '', show: true,language:'en'};
   }
   handleUserInput = (event, key) => {
     (key === this.props.appConstants.latKey) ? this.setState({lat: event.target.value}) : this.setState({lng: event.target.value});
@@ -29,17 +29,18 @@ class ModalForm extends Component {
     }
   }
   render() {
+    const reqLanguage = userLanguage[this.state.language];
     return (
       <div>
         <Modal show={this.state.show}>
           <Modal.Header>
-            <Modal.Title>{userLanguage.en.storeLocDetails}</Modal.Title>
+            <Modal.Title>{reqLanguage.storeLocDetails}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <FormGroup
               controlId="formBasicText"
             >
-              <ControlLabel>{userLanguage.en.latitude}</ControlLabel>
+              <ControlLabel>{reqLanguage.latitude}</ControlLabel>
               <FormControl
                 className="margin-bottom"
                 type="text"
@@ -51,7 +52,7 @@ class ModalForm extends Component {
             <FormGroup
               controlId="formBasicText"
             > 
-              <ControlLabel>{userLanguage.en.longitude}</ControlLabel>
+              <ControlLabel>{reqLanguage.longitude}</ControlLabel>
               <FormControl
                 className="margin-bottom"
                 type="text"
@@ -62,7 +63,7 @@ class ModalForm extends Component {
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button className="btn btn-primary" onClick={this.submitLocation}>{userLanguage.en.submit}</Button>
+            <Button className="btn btn-primary" onClick={this.submitLocation}>{reqLanguage.submit}</Button>
           </Modal.Footer>
         </Modal>
       </div>

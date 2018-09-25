@@ -131,18 +131,19 @@ h1 {
 .widget {
   background: #fff;
   border-radius: 20px;
-  padding: 25px;
- -webkit-box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.16);
-  box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.16);
+  padding: 20px;
+ -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   margin: 20px 25px;
+  border : 1px solid #e2e2e2;
 }
 .widget .productTitle {
-  border-bottom: 1px solid #e7e7e7;
+ /* border-bottom: 1px solid #e7e7e7; */
   padding-bottom: 12px;
   margin-bottom: 12px;
   width: 100%;
-  font-size: 19px;
+  font-size: 23px;
 }
 .widgetAlert {
   background: #fff;
@@ -194,7 +195,7 @@ h1 {
 	margin-bottom: 5px;
 }
 .widget h4 {
-	font-size: 16px;
+	font-size: 15px;
 	margin:6px auto;
   width: 95%;
 }
@@ -281,7 +282,7 @@ h1 {
 }
 .headingTxtmini {
   background-color: white;
-  padding:5px 0 20px 0;
+  padding:5px 0 60px 0;
 }
 .btn {
 	width: 220px;
@@ -297,6 +298,7 @@ h1 {
 }
 .btn.active {
 	background-color: #0070c6;
+  box-shadow: none;
 }
 .btn.active a {
   color: #ffffff;
@@ -929,11 +931,12 @@ img {
 
 /* line 2, ../sass/layout/_header.scss */
 .navbar {
-  min-height: 85px;
+  min-height: 69px;
   background: #FFFFFF;
   padding: 0 30px;
   border: none;
-  position: fixed;
+  margin-bottom: 0;
+  /*position: fixed;*/
   width: 100%;
   z-index: 100;
 }
@@ -1555,12 +1558,6 @@ img {
   padding: 15px 50px;
   color: #FFFFFF;
 }
-@media (max-width: 750px) {
-  /* line 337, ../sass/pages/_home.scss */
-  .email {
-    padding: 15px 20px;
-  }
-}
 /* line 343, ../sass/pages/_home.scss */
 .email button {
   padding: 10px;
@@ -1679,18 +1676,16 @@ label {
   color: #0070c6;
   text-transform: uppercase;
 }
+
 .btn-back{
   text-transform: none;
-  font-size: 16px;
-  position: fixed;
-  bottom: 10px;
+  font-size: 17px;
   text-align: center;
   width: 100%;
   background-color: transparent;
   color: #0070c6;
   font-weight: normal;
-  padding-bottom: 0;
-  margin-bottom: 0;
+  padding-top: 20px;
 }
 .btn-back:hover {
   color: #0070c6 !important;
@@ -1714,6 +1709,7 @@ video {
 }
 .btn:hover, .btn:active .btn:focus {
   color: #fff;
+  outline: none;
 }
 .hexagonImg {
   width: 130px;
@@ -1737,6 +1733,9 @@ video {
   max-width: 300px;
   margin: auto;
 }
+.wayIcon img{
+  max-width: 150px;
+}
 .wayWidget{
   padding: 0 20px 10px 20px;
 }
@@ -1757,7 +1756,9 @@ video {
 .ioswallet:focus {
   outline: none;
 }
-
+.pad-top-30{
+  padding-top: 30px;
+}
 .unableContent{
   margin : 20px 0;
 }
@@ -1772,4 +1773,102 @@ video {
   outline:none;
   color :#0070c6;
   font-weight: bold;
+}
+.greyBg{
+  border: 6px solid #e2e2e2;
+  box-shadow: none;
+}
+.btn:focus, .btn.focus {
+  color: #fff;
+}
+.btn-cancel:hover, .btn-cancel:focus {
+  outline: none;
+  color: #0070c6;
+  box-shadow: none;
+}
+.deviceImg{
+  min-height: 150px
+}
+.panoramaContent {
+  /*border-top: 1px solid #e7e7e7;*/
+  padding-top: 15px;
+  margin-top: 10px; 
+}
+.panoramaContent .panoramaleft {
+ width: 50%;
+ display: inline-block;
+ text-align: left;
+ vertical-align: middle;
+}
+.panoramaContent .panoramaright {
+  width: 50%;
+ display: inline-block;
+ text-align: left;
+ vertical-align: middle;
+}
+.panoramaContent .cityName {
+  font-size: 14px;
+  font-weight: 600;
+}
+.panoramaContent .distance {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0070c6;
+}
+.panoramaContent .address {
+  font-size: 12px;
+  font-weight: normal;
+  text-align: right;
+}
+.panoramaContent .time {
+  font-size: 12px;
+  color: rgba(0,0,0,0.5);
+  text-align: right;
+  padding-top: 5px;
+}
+.loaderContainer {
+  position: fixed;
+  background-color: rgba(0,0,0,0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+.loaderContainer .loaderContent {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  left: 50%;
+  top: 50%;
+  margin-left: -70px;
+  margin-top: -70px;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 20px;
+}
+.btn:active, .btn.active {
+  box-shadow: none;
+}
+.topAlign {
+  position: relative;
+  top: -80px;
+}
+.padbtm-60 {
+  padding-bottom: 60px;
+}
+@media (max-width: 750px) {
+  /* line 337, ../sass/pages/_home.scss */
+  .email {
+    padding: 15px 20px;
+  }
+  .btn-cancel {
+    padding: 0 10px;
+  }
+  .availableImg{
+    min-height: 100px;
+  }
+  .availableImg img {
+    max-width: 150px;
+  }
 }

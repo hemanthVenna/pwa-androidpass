@@ -2,22 +2,29 @@ import React, { Component } from "react";
 import {Animated} from 'react-animated-css';
 import userLanguage from '../helpers/languageConstants.js';
 class NewsDescription extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      language : 'en'
+    }
+  }
   render() {
     const {deviceInfo} = this.props;
+    const reqLanguage = userLanguage[this.state.language];
     return (
       <div>
       <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
         <button className="backtoStart top" onClick={this.props.clickHandler}>
-          <img src="/images/leftarrow.png" alt="" />{userLanguage.en.backToStart}
+          <img src="/images/leftarrow.png" alt="" />{reqLanguage.backToStart}
         </button>
         <div className="productDisc">
           <h2>{deviceInfo.DeviceName}</h2>
           <div className="productImg">
-            <img src={deviceInfo.DeviceImage} alt={deviceInfo.DeviceName} title={deviceInfo.DeviceName} />
+            <img src={deviceInfo.DeviceImage ? deviceInfo.DeviceImage : '/images/hpLaptop.png'} alt={deviceInfo.DeviceName} title={deviceInfo.DeviceName} />
           </div>
           <div className="productReview">
             <span><img src="/images/fiveStar.png" alt="" /></span>
-            <span>(98) {userLanguage.en.addReview}</span>
+            <span>(98) {reqLanguage.addReview}</span>
           </div>        
         </div>
         <div className="productInfo">
@@ -39,9 +46,9 @@ class NewsDescription extends Component {
           <h3>Fast, beautiful and fits my needs.</h3>
           <h4>Posted 2 months ago</h4>
           <p>I had been shopping for a laptop for months. I waited until after CES 2018 to find out the latest laptops coming out. I wanted 15.6”, 10-key, i7 with 8th gen intel chip and SSD. This laptop checked all</p>
-          <a className="readMore">{userLanguage.en.readMore}</a>
+          <a className="readMore">{reqLanguage.readMore}</a>
         </div>
-        <button className="backtoStart" onClick={this.props.clickHandler}>{userLanguage.en.backToStart}</button>
+        <button className="backtoStart" onClick={this.props.clickHandler}>{reqLanguage.backToStart}</button>
       </Animated>
       </div>
     );

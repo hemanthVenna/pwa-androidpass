@@ -39,9 +39,9 @@ class HandOff extends Component {
   render() {
   	const { wishlistData, isIos } = this.props;
   	const displayData = wishlistData.length > 0 ? wishlistData.map((product, index) => (
-      <div className= "NewsData" key={index.toString()}>
-        <div className={`widget ${(this.state.activeKey === index) ? 'activeborder' : ''} ${this.state.selectedKey === product.Id ? 'hidden' : ''}`} key={product.Id.toString()}>
-          <div><img src={product.DeviceImage} alt={product.DeviceName} title={product.DeviceName} /></div>
+      <div className= "NewsData topAlign" key={index.toString()}>
+        <div className={`widget ${(this.state.activeKey === index) ? 'activeborder1' : ''} ${this.state.selectedKey === product.Id ? 'hidden' : ''}`} key={product.Id.toString()}>
+          <div className="deviceImg"><img src={product.DeviceImage ? product.DeviceImage : '/images/hpLaptop.png'} alt={product.DeviceName} title={product.DeviceName} /></div>
           <h2 className="productTitle">{product.DeviceName}</h2>
           <h4>{product.Categories}</h4>
           {isIos ? <img className="ioswallet" alt="wallet" src="/images/applewallet.png" onClick={() => this.createWallet(product)}/> : ''} 

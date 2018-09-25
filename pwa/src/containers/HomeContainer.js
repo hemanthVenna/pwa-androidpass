@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import { PanelGroup, Panel } from 'react-bootstrap';
-import appConstants from "../helpers/appConstants";
 import DeviceList from '../components/DeviceList';
 import { isUndefined, isEmpty }  from 'lodash';
 import {Animated} from 'react-animated-css';
 import userLanguage from '../helpers/languageConstants.js';
+import appConstants from "../helpers/appConstants";
 import ApiClient  from '../helpers/ApiClient';
 class HomeContainer extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      language : 'en'
+    }
+  }
   componentDidMount() {
     if(!isUndefined(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie)) && !isEmpty(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie))){
       let sessionId = ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie);
@@ -22,6 +28,7 @@ class HomeContainer extends Component {
     } 
   };
   render() {
+    const reqLanguage = userLanguage[this.state.language];
     return (
       <div className="headingSection">
       <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
@@ -29,7 +36,7 @@ class HomeContainer extends Component {
           <div className="row banner">
             <div className="col-md-5 bannerTxt">
               <span>
-                {userLanguage.en.landingPageHeader}
+                {reqLanguage.landingPageHeader}
               </span>
             </div>
             <div className="col-md-7 bannerImg">
@@ -40,7 +47,7 @@ class HomeContainer extends Component {
         <div className="container">
           <div>
             <div className="winDevices">
-              {userLanguage.en.chooseSubHeader}
+              {reqLanguage.chooseSubHeader}
             </div>
             <PanelGroup accordion id="accordion-example" className="accordion">
               <Panel eventKey="1" className="card">
@@ -50,8 +57,8 @@ class HomeContainer extends Component {
                       <h5 className="mb-0">
                         <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           <img src="/images/pcselect.png" alt="pc select "/>
-                          {userLanguage.en.panelHeader1}
-                          <span className="hidden-xs pull-right quoteTxt">{userLanguage.en.panelSubHeader1} </span>
+                          {reqLanguage.panelHeader1}
+                          <span className="hidden-xs pull-right quoteTxt">{reqLanguage.panelSubHeader1} </span>
                         </button>
                       </h5>
                     </div>
@@ -67,7 +74,7 @@ class HomeContainer extends Component {
                     <div className="card-header" id="headingTwo">
                       <h5 className="mb-0">
                         <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          <img src="/images/windows.png" alt="pc select " />{userLanguage.en.panelHeader2} <span className="hidden-xs pull-right quoteTxt">{userLanguage.en.panelSubHeader2} </span>
+                          <img src="/images/windows.png" alt="pc select " />{reqLanguage.panelHeader2} <span className="hidden-xs pull-right quoteTxt">{reqLanguage.panelSubHeader2} </span>
                         </button>
                       </h5>
                     </div>
@@ -86,10 +93,10 @@ class HomeContainer extends Component {
                       <div className="col-md-6">
                         <img className="windowLogo" src="/images/winLogo.png" alt="windows Logo" />
                         <p>
-                          {userLanguage.en.winLogoData}
+                          {reqLanguage.winLogoData}
                         </p>
                         <div>
-                          <a className="btn learnMore">{userLanguage.en.learnMore}</a>
+                          <a className="btn learnMore">{reqLanguage.learnMore}</a>
                         </div>
                       </div>
                     </div>
@@ -100,10 +107,10 @@ class HomeContainer extends Component {
                       <div className="col-md-6">
                         <img className="windowLogo" src="/images/officeLogo.png" alt="office Logo" />
                         <p>
-                          {userLanguage.en.ofcLogoData}
+                          {reqLanguage.ofcLogoData}
                         </p>
                         <div>
-                          <a className="btn learnMore">{userLanguage.en.learnMore}</a>
+                          <a className="btn learnMore">{reqLanguage.learnMore}</a>
                         </div>
                       </div>
                     </div>
@@ -116,7 +123,7 @@ class HomeContainer extends Component {
                   <div className="card-header" id="headingThree">
                   <h5 className="mb-0">
                     <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      <img src="/images/hardware.png" alt="pc select " /> {userLanguage.en.panelHeader3} <span className="hidden-xs pull-right quoteTxt">{userLanguage.en.panelSubHeader3}</span>
+                      <img src="/images/hardware.png" alt="pc select " /> {reqLanguage.panelHeader3} <span className="hidden-xs pull-right quoteTxt">{reqLanguage.panelSubHeader3}</span>
                     </button>
                   </h5>
                 </div>
@@ -174,7 +181,7 @@ class HomeContainer extends Component {
                     <div className="card-header" id="headingFour">
                       <h5 className="mb-0">
                         <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                          <img src="/images/device.png" alt="pc select " /> {userLanguage.en.panelHeader4} <span className="hidden-xs pull-right quoteTxt">{userLanguage.en.panelSubHeader4}</span>
+                          <img src="/images/device.png" alt="pc select " /> {reqLanguage.panelHeader4} <span className="hidden-xs pull-right quoteTxt">{reqLanguage.panelSubHeader4}</span>
                         </button>
                       </h5>
                   </div>

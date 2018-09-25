@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import userLanguage from '../helpers/languageConstants.js';
 class AlertContainer extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      language : 'en'
+    }
+  }
   render() {
+    const reqLanguage = userLanguage[this.state.language];
     return (
       <div className="headingSection padtop-80" >
         <div>
@@ -20,49 +27,51 @@ class AlertContainer extends Component {
           </div>
           {/*  welcome Alert */} 
           <div className="widgetAlert none">
-            <h4>{userLanguage.en.welcomeHeader}</h4>
+            <h4>{reqLanguage.welcomeHeader}</h4>
             <div><img src="images/ic-welcome.png" alt="welcomeImage"/></div>
-            <h6>{userLanguage.en.welcomeMsg}</h6>
-            <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.iAmHere}</button>
+            <h6>{reqLanguage.welcomeMsg}</h6>
+            <div className="btnContainer"> <button className="btn btn-primary">{reqLanguage.iAmHere}</button>
             </div>
           </div>
           {/*  At the store Alert */}
           <div className="widgetAlert none">
-            <h4>{userLanguage.en.atStore}</h4>
+            <h4>{reqLanguage.atStore}</h4>
             <div><img src="images/ic-store.png" alt="storeImage"/></div>
-            <h6>{userLanguage.en.atStoreHeader}</h6>
-            <p>{userLanguage.en.atStoreSubHeader}</p>
-            <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.tryAgain}</button>
+            <h6>{reqLanguage.atStoreHeader}</h6>
+            <p>{reqLanguage.atStoreSubHeader}</p>
+            <div className="btnContainer"> <button className="btn btn-primary">{reqLanguage.tryAgain}</button>
             </div>
           </div>
 
           {/*  It's busy Alert */}
-          <div className="widgetAlert none">
-            <h4>{userLanguage.en.busy}</h4>
+          <div className="widgetAlert">
+            <h4>{reqLanguage.busy}</h4>
             <div><img src="images/ic-busy.png" alt="storeImage"/></div>
-            <h6>{userLanguage.en.busyHeader}</h6>
-            <p>{userLanguage.en.busySubHeader}</p>
-            <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.tapToExplore}</button>
+            <h6>{reqLanguage.busyHeader}</h6>
+            <p>{reqLanguage.busySubHeader}</p>
+            <div className="btnContainer"> 
+              <button className="btn btn-primary">{reqLanguage.tapToExplore}</button>
+              <button className="btn btn-cancel">{reqLanguage.cancel}</button>
             </div>
           </div>
 
           {/*  It's available Alert */}
           <div className="widgetAlert none">
-            <h4>{userLanguage.en.available}</h4>
+            <h4>{reqLanguage.available}</h4>
             <div><img src="images/ic-select.png" alt="storeImage"/></div>
-            <h6>{userLanguage.en.availHeader}</h6>
-            <p>{userLanguage.en.availSubHeader}</p>
-            <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.guideMe}</button>
+            <h6>{reqLanguage.availHeader}</h6>
+            <p>{reqLanguage.availSubHeader}</p>
+            <div className="btnContainer"> <button className="btn btn-primary">{reqLanguage.guideMe}</button>
             </div>
           </div>
 
         {/*  It's unavailable Alert */}
           <div className="widgetAlert none">
-            <h4>{userLanguage.en.unavailable}</h4>
+            <h4>{reqLanguage.unavailable}</h4>
             <div><img src="images/ic-busy.png" alt="storeImage"/></div>
-            <h6>{userLanguage.en.notFoundOnDemo}</h6>
-            <p>{userLanguage.en.likeToExploreSimilar}</p>
-            <div className="btnContainer"> <button className="btn btn-primary">{userLanguage.en.tapToExplore}</button>
+            <h6>{reqLanguage.notFoundOnDemo}</h6>
+            <p>{reqLanguage.likeToExploreSimilar}</p>
+            <div className="btnContainer"> <button className="btn btn-primary">{reqLanguage.tapToExplore}</button>
             </div>
           </div>
 
