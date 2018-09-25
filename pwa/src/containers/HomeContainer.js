@@ -33,8 +33,10 @@ class HomeContainer extends Component {
               const showAtStore = (res.data.nearestStoreId === null) ? true : false;
               if(!showAtStore){
                 alert('in store');
+                window.location.href = '/beacon-scan/'+sessionId+'/false'
               }else{
                 alert('not in store');
+                window.location.href = '/product-scan/'+sessionId+'/false'
               }
             } else {
               alert(userLanguage[that.state.language].saveSessionErr);
