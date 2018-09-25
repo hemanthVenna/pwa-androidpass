@@ -11,31 +11,26 @@ class HomeContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      language : 'en'
+      language : 'en',
+      displayLoader: true
+
     }
   }
   componentDidMount() {
-    if(!isUndefined(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie)) && !isEmpty(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie))){
-      let sessionId = ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie);
-      alert('sessionId-->'+sessionId);
-    }else{
-      alert('cookie empty');
-    }
     if(!isUndefined(localStorage.getItem(appConstants.sessionCookie)) && !isEmpty(localStorage.getItem(appConstants.sessionCookie))){
       let currentParams = [];
       let sessionId = localStorage.getItem(appConstants.sessionCookie)
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-          currentParams = { latitude: '17.425646', longitude: '78.41799', sessionId:sessionId };   
+           currentParams = { latitude: position.coords.latitude, longitude: position.coords.longitude, sessionId:sessionId };
+          // currentParams = { latitude: '17.425646', longitude: '78.41799', sessionId:sessionId };   
           const that = this;
           ApiClient.apiPost(ApiEndPoints.DevicesBySessionId, currentParams).then(function(res) {
             if(res.data.data.length > 0) {
               const showAtStore = (res.data.nearestStoreId === null) ? true : false;
               if(!showAtStore){
-                alert('in store');
                 window.location.href = '/beacon-scan/'+sessionId+'/false'
               }else{
-                alert('not in store');
                 window.location.href = '/product-scan/'+sessionId+'/false'
               }
             } else {
@@ -43,17 +38,26 @@ class HomeContainer extends Component {
             } 
           });
         }, (error) => {
-          alert('please switch on ur location.');
+          alert('Please switch on ur location.');
         });
       }
     }else{
-      alert('localstorage empty');
+      this.setState({displayLoader: false});
     } 
   };
   render() {
     const reqLanguage = userLanguage[this.state.language];
+    const { displayLoader } = this.state;
+    const loader = <div className="loaderContainer">
+      <div className="loaderContent">
+         <img src="/images/loader.gif" alt="loader" />
+      </div>
+    </div>;
     return (
-      <div className="headingSection">
+      <div>
+      { 
+        displayLoader ? 
+        loader : <div className="headingSection">
       <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
         <div className="bannerSection">
           <div className="row banner">
@@ -222,6 +226,8 @@ class HomeContainer extends Component {
           </div>
         </div>  
         </Animated>    
+      </div> 
+      }
       </div>
     );
   }
