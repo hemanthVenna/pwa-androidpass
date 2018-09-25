@@ -1,9 +1,19 @@
 import React, { Component } from "react";
 import { PanelGroup, Panel } from 'react-bootstrap';
+import appConstants from "../helpers/appConstants";
 import DeviceList from '../components/DeviceList';
+import { isUndefined, isEmpty }  from 'lodash';
 import {Animated} from 'react-animated-css';
 import userLanguage from '../helpers/languageConstants.js';
+import ApiClient  from '../helpers/ApiClient';
 class HomeContainer extends Component {
+  componentDidMount() {
+    if(!isUndefined(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie)) && !isEmpty(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie))){
+      alert(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie))
+    }else{
+      alert('empty');
+    } 
+  };
   render() {
     return (
       <div className="headingSection">

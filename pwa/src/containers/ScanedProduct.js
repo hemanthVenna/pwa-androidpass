@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 /*import { map, indexOf}  from 'lodash';
 import deviceData from '../helpers/data/devices';*/
-import $ from 'jquery';
+// import $ from 'jquery';
 import Handoff from '../components/Handoff';
 import { isUndefined, isEmpty, includes }  from 'lodash';
 // import HomeContainer from '../containers/HomeContainer';
@@ -31,18 +31,8 @@ class ScanedProduct extends Component {
       const IsFBMSN = ((userAgent.indexOf('fb_iab') > -1) || (userAgent.indexOf('fban/') > -1) || (userAgent.indexOf('micromessenger') > -1));
       if(!IsFBMSN){
 
-      $('.HiaYvf-LgbsSe .kcZgp-LgbsSe .n2to0e .P0Lgcb .Wetbn .skIXFc-ktSouf-wcotoc-WGXQb .MEDVr-LgbsSe-bN97Pc .Wetbn-LgbsSe-bN97Pc .KVuj8d-tSZMSb .MEDVr-LgbsSe-bN97Pc .LgbsSe-bN97Pc ').click(function(){
-        console.log("button clicked")
-      })
-      $('.kcZgp-LgbsSe').click(function(){
-        console.log("button clicked")
-      })
-      $("#___savetoandroidpay_0").click(function(){
-        console.log("button clock")
-      })
       let currentParams = this.props.match.params;
   		let sessionId = (!isUndefined(currentParams.sessionId) && !isEmpty(currentParams.sessionId)) ? currentParams.sessionId : '';
-      console.log(appConstants);
       document.cookie = appConstants.sessionCookie+"=" + sessionId+ ";path=/;";
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
