@@ -32,8 +32,9 @@ class ScanedProduct extends Component {
       if(!IsFBMSN){
 
       let currentParams = this.props.match.params;
-  		let sessionId = (!isUndefined(currentParams.sessionId) && !isEmpty(currentParams.sessionId)) ? currentParams.sessionId : '';
+      let sessionId = (!isUndefined(currentParams.sessionId) && !isEmpty(currentParams.sessionId)) ? currentParams.sessionId : '';
       document.cookie = appConstants.sessionCookie+"=" + sessionId+ ";path=/;";
+      localStorage.setItem(appConstants.sessionCookie, sessionId);
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
 	        //currentParams = { latitude: "17.425646", longitude: "78.4201999", sessionId:sessionId };

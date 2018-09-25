@@ -9,9 +9,16 @@ import ApiClient  from '../helpers/ApiClient';
 class HomeContainer extends Component {
   componentDidMount() {
     if(!isUndefined(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie)) && !isEmpty(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie))){
-      alert(ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie))
+      let sessionId = ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie);
+      alert('sessionId-->'+sessionId);
     }else{
-      alert('empty');
+      alert('cookie empty');
+    }
+    if(!isUndefined(localStorage.getItem(appConstants.sessionCookie)) && !isEmpty(localStorage.getItem(appConstants.sessionCookie))){
+      let sessionId1 = localStorage.getItem(appConstants.sessionCookie);
+      alert('localsessionId-->'+sessionId1);
+    }else{
+      alert('localstorage empty');
     } 
   };
   render() {
