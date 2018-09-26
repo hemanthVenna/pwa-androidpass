@@ -35,8 +35,7 @@ class Beacon extends Component {
 
   	componentDidMount() {
   		var lang = navigator.language || navigator.userLanguage;
-  		console.log(lang)
-  		// this.setState({language : lang})
+  		this.setState({language:lang})
   		let currentParams = this.props.match.params;
   		console.log(currentParams);
   		let sessionId = (!isUndefined(currentParams.sessionId) && !isEmpty(currentParams.sessionId)) ? currentParams.sessionId : ApiClient.getRequiredKeyCookieValue(appConstants.sessionCookie);
