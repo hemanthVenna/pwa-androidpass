@@ -45,12 +45,14 @@
         root.style.display = 'block';
         var connectionAlert = document.getElementById('connectionAlert');
         connectionAlert.style.display = 'none';
+        console.log("online");
       } else {
         console.log('offline');
         var connectionAlert = document.getElementById('connectionAlert');
         connectionAlert.style.display = 'block';
         var root = document.getElementById('root');
         root.style.display = 'none';
+        console.log("offline");
       }
       window.addEventListener('load', e => {
         if('serviceWorker' in navigator) {
