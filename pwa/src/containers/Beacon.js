@@ -29,7 +29,8 @@ class Beacon extends Component {
 			locationAccessAllowed : true,
 			locationAccessAllowedDuplicate : false,
 			displayLoader : true,
-			language : 'en'
+			language : 'en',
+			showConnectionAlert: false
 		};
   	}
 
@@ -82,6 +83,12 @@ class Beacon extends Component {
 		});
   	}
  	handleClick = (selectedProduct) => {
+ 		if(!window.navigator.onLine){
+ 			console.log("no cnnection")
+ 			this.setState({
+ 				showConnectionAlert: true
+ 			})
+ 		}
  		this.setState({
 			notificationSent: false,
 			wayFinderSymbol: '',
@@ -227,12 +234,18 @@ class Beacon extends Component {
 	  	const showListFlag = this.state.showList;
 	  	const uagent = navigator.userAgent.toLowerCase();
   		const isiPhone = includes(uagent, appConstants.iphone);
-	  	const { displayLoader, isNotOnDisplay, showAtStore, selectedDevice, notificationSent, wayFinderSymbol, isNotAvailable, exploreMore} = this.state;
+	  	const { displayLoader, isNotOnDisplay, showAtStore, showConnectionAlert, selectedDevice, notificationSent, wayFinderSymbol, isNotAvailable, exploreMore} = this.state;
 	  	const journeyCompletedId = this.state.journeyCompletedId ? this.state.journeyCompletedId : '';
 
 	  	const loader = <div className="loaderContainer">
           <div className="loaderContent">
              <img src="/images/loader.gif" alt="loader" />
+          </div>
+        </div>;
+        const connectionAlert = <div className="loaderContainer">
+          <div className="loaderContent">
+             <img src="/images/loader.gif" alt="loader" />
+             <p>connection failed</p>
           </div>
         </div>;
 
@@ -332,6 +345,7 @@ class Beacon extends Component {
 		    </Animated> }
 
 		    {displayLoader && loader}
+		    {showConnectionAlert && connectionAlert}
 	      	</div>	
 	    );
   	}

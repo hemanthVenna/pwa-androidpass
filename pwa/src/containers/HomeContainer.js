@@ -29,9 +29,11 @@ class HomeContainer extends Component {
             if(res.data.data.length > 0) {
               const showAtStore = (res.data.nearestStoreId === null) ? true : false;
               if(!showAtStore){
-                window.location.href = '/beacon-scan/'+sessionId+'/false'
+                // window.location.href = '/beacon-scan/'+sessionId+'/false';
+                this.props.history.push(`/beacon-scan/${sessionId}/false`)
               }else{
-                window.location.href = '/product-scan/'+sessionId+'/false'
+                // window.location.href = '/product-scan/'+sessionId+'/false';
+                this.props.history.push(`/product-scan/${sessionId}/false`)
               }
             } else {
               alert(userLanguage[that.state.language].saveSessionErr);
